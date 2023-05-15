@@ -31,26 +31,39 @@ class Autoclicker:
 
     def doubleClick(self):
         mouse.click("left")
-        time.sleep(random.uniform(0.05, self._doubleClickSleep))
+
+        sleep = random.uniform(0.05, self._doubleClickSleep)
+        # print('doubleClickDelay sleep time:', sleep )
+        seconds = time.time() % 60
+        print(f'Click      {seconds:.1f} s')
+        print(f'Sleeping:  {sleep:.1f}  s')
+        time.sleep(sleep)
+        seconds = time.time() % 60
+        print(f"Click      {seconds:.1f} s")
+        print('-------------------------')
         mouse.click("left")
 
         # Random wait 5% of time for 3-8 seconds
         if(random.randint(0,100) <= 5):
             x = random.uniform(3, 8)
-            print(f'Waiting {x} seconds')
+            print(f'Waiting {x:2.1f} seconds')
             time.sleep(x)
 
         # Random wait 1% of time for 20-45 seconds
-        if(random.randint(0,100) <= 1):
-            x = random.uniform(20, 45)
-            print(f'Waiting {x} seconds')
-            time.sleep(x)
+        # randInt = random.randint(0, 100)
+        # if(randInt <= 1):
+        #     print('randomInt between 0 and 100:', randInt)
+        #     x = random.uniform(20, 45)
+        #     print(f'Waiting {x} seconds')
+        #     time.sleep(x)
 
         # Random wait 0.1% of time for 70-300 seconds
-        if(random.randint(0,1000) <= 1):
-            x = random.uniform(70, 300)
-            print(f'Waiting {x} seconds')
-            time.sleep(x)
+        # randInt = random.randint(0, 1000)
+        # if(randInt <= 1):
+        #     print('randomInt between 0 and 1000:', randInt)
+        #     x = random.uniform(70, 300)
+        #     print(f'Waiting {x} seconds')
+        #     time.sleep(x)
 
     def autoclick(self, minTime, maxTime):
         self.clickMinTime = minTime
@@ -58,6 +71,6 @@ class Autoclicker:
 
     def start(self):
         while True:
-            print('raw dog',threading.active_count())
+            # print('raw dog ',threading.active_count())
             time.sleep(random.uniform(self.clickMinTime, self._clickMaxTime))
             self.doubleClick()
