@@ -30,11 +30,11 @@ class Autoclicker:
         self._clickMinTime = value
 
     def doubleClick(self):
-        mouse.click("left")
-
         sleep = random.uniform(0.05, self._doubleClickSleep)
-        # print('doubleClickDelay sleep time:', sleep )
         seconds = time.time() % 60
+
+        mouse.click("left")
+        # print('doubleClickDelay sleep time:', sleep )
         print(f'Click      {seconds:.1f} s')
         print(f'Sleeping:  {sleep:.1f}  s')
         time.sleep(sleep)
@@ -48,6 +48,7 @@ class Autoclicker:
             x = random.uniform(3, 8)
             print(f'Waiting {x:2.1f} seconds')
             time.sleep(x)
+            return
 
         # Random wait 1% of time for 20-45 seconds
         # randInt = random.randint(0, 100)
@@ -56,6 +57,7 @@ class Autoclicker:
         #     x = random.uniform(20, 45)
         #     print(f'Waiting {x} seconds')
         #     time.sleep(x)
+        #     return
 
         # Random wait 0.1% of time for 70-300 seconds
         # randInt = random.randint(0, 1000)
@@ -64,6 +66,7 @@ class Autoclicker:
         #     x = random.uniform(70, 300)
         #     print(f'Waiting {x} seconds')
         #     time.sleep(x)
+        #     return
 
     def autoclick(self, minTime, maxTime):
         self.clickMinTime = minTime
