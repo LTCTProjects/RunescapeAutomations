@@ -7,7 +7,7 @@ from autoclicker import Autoclicker
 # Add hotkeys to stop program
 # Make executable
 # Default values on slider = class variables (min/max delays)
-
+# Add library installation to readme (freeze venv??)
 
 class pyGUI:
     def __init__(self):
