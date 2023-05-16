@@ -21,6 +21,19 @@ class pyGUI:
         # print("appdata: ", appdata, "userdata:", userdata)
         ac._clickMaxTime = userdata
 
+    def setOnOff(sender,appdata, userdata):
+        ac.isOn = userdata
+        print(dpg.get_item_state(appdata))
+        # dpg.get_item
+        # print(dpg.get_item_state(sender))
+        widgetState = dpg.get_item_state(appdata)
+        print('initial state',widgetState['active'])
+        # widgetState['active']=True
+        print('widget state:',widgetState['active'])
+        widgetLabel = dpg.get_item_label(appdata)
+        dpg.configure_item(appdata, label='Script is ON') if widgetLabel == 'Script is OFF' else dpg.configure_item(appdata, label='Script is OFF')
+        ac.isOn = False if widgetLabel == 'Script is ON' else True
+
     def set_main_window(self):
         dpg.create_viewport(title='Custom Title', width=600, height=600)
         with dpg.window(label='jlrewj', no_title_bar=True, no_move=True, width=600, height=600):
@@ -31,6 +44,8 @@ class pyGUI:
             # regular click delay slider
             dpg.add_button(label='Max delay between regular clicks. Default: 0.6s')
             dpg.add_slider_float(min_value=1, max_value=5, callback=self.setClickMaxDelay)
+
+            dpg.add_button(label='Script is OFF', callback=self.setOnOff)
 
         dpg.setup_dearpygui()
         dpg.show_viewport()

@@ -3,11 +3,7 @@ import threading
 
 import mouse
 import time
-import tkinter
 import kivy_venv
-
-# from pyGUI import pyGUI
-# gui = pyGUI()
 
 #TODO
 # Tkinter GUI
@@ -16,6 +12,8 @@ import kivy_venv
 # Mouse movement macro, add variation to coordinates
 
 class Autoclicker:
+    isOn = True
+
     def __init__(self):
         self._clickMinTime = 0.3
         self._clickMaxTime = 0.6
@@ -74,6 +72,7 @@ class Autoclicker:
 
     def start(self):
         while True:
-            # print('raw dog ',threading.active_count())
-            time.sleep(random.uniform(self.clickMinTime, self._clickMaxTime))
-            self.doubleClick()
+            if self.isOn:
+                # print('raw dog ',threading.active_count())
+                time.sleep(random.uniform(self.clickMinTime, self._clickMaxTime))
+                self.doubleClick()
